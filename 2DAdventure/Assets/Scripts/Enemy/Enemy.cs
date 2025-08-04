@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(PhysicsCheck))]
+
 public class Enemy : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -16,6 +18,7 @@ public class Enemy : MonoBehaviour
     public float chaseSpeed; //追击速度
     public float currentSpeed; //目前速度范围
     public Vector3 faceDir;//三维的向量，记录面朝的方向
+    public Transform attacker; //攻击者的Transform，用于记录攻击者的位置
 
     [Header("计时器")]
     public float waitTime; //等待时间
@@ -31,7 +34,7 @@ public class Enemy : MonoBehaviour
         physicsCheck = GetComponent<PhysicsCheck>(); //获取当前物体的PhysicsCheck组件
         currentSpeed = normalSpeed; //初始化当前速度为正常速度
 
-        waitTimeCounter= waitTime; //初始化等待时间计时器为等待时间
+        waitTimeCounter = waitTime; //初始化等待时间计时器为等待时间
 
     }
 
@@ -42,7 +45,7 @@ public class Enemy : MonoBehaviour
         if ((physicsCheck.touchLeftWall && faceDir.x < 0) || (physicsCheck.touchRightWall && faceDir.x > 0))//如果接触左墙壁或右墙壁
         {
             wait = true; //设置等待为true
-            anim.SetBool  ("walk", false); //设置动画参数，控制是否走动
+            anim.SetBool("walk", false); //设置动画参数，控制是否走动
         }
 
         TimeCounter();
@@ -71,10 +74,10 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void TimeCounter()
+    public void TimeCounter()//计时器
     {
         if (wait)
-        { 
+        {
             waitTimeCounter -= Time.deltaTime; //如果等待，则计时器减去时间增量
             if (waitTimeCounter <= 0)
             {
@@ -83,10 +86,23 @@ public class Enemy : MonoBehaviour
                 transform.localScale = new Vector3(faceDir.x, 1, 1); //将物体的局部缩放的x轴方向取反，表示面朝相反方向
             }
 
-
         }
+    }
 
+    public void OnTakeDamage(Transform attackTrans)
+    {
+        attacker = attackTrans;
+        //转身
+        if (attackTrans.position.x - transform.position.x > 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+        if (attackTrans.position.x - transform.position.x < 0)
+            transform.localScale = new Vector3(1, 1, 1);
 
-
+        //受伤被击退
+        // isHurt = true;
+        // anim.SetTrigger("hurt");
+        // Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
+        // rb.velocity = new Vector2(0, rb.velocity.y);
+        // StartCoroutine(OnHurt(dir));
     }
 }

@@ -113,13 +113,16 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(inputDirection.x * speed * Time.deltaTime, rb.velocity.y); //根据输入方向和速度设置刚体的速度,y轴保持真实物理速度-9.81 
         }
 
-        int faceDir = (int)transform.localScale.x;//声明一个临时变量，代表人物面朝方向。此处强制转换为int类型，方便后续判断
+        int faceDir = (int)transform.localScale.x;
 
-        if (inputDirection.x > 0) //x轴的输入为正数
+        if (inputDirection.x > 0)
             faceDir = 1;
-        if (inputDirection.x < 0)  //x轴的输入为负数
+        if (inputDirection.x < 0)
             faceDir = -1;
-        transform.localScale = new Vector3(faceDir, 1, 1); //根据输入方向翻转角色
+
+        //人物翻转
+        transform.localScale = new Vector3(faceDir, 1, 1);
+
 
         isCrouch = inputDirection.y < -0.5f && physicsCheck.isGround; //判断是否蹲下，条件为y轴输入小于-0.5且在地面上
         //控制碰撞体大小
@@ -144,6 +147,8 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerAttack(InputAction.CallbackContext context)
     {
+        // if(!physicsCheck.isGround)
+        //     return; //如果不在地面上，直接返回，不执行攻击
         playerAnimation.PlayerAttack(); //调用PlayerAnimation脚本中的PlayerAttack方法，触发攻击动画
         isAttack = true; //设置攻击状态为true
     }
