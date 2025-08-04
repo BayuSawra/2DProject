@@ -18,7 +18,10 @@ public class Enemy : MonoBehaviour
     public float chaseSpeed; //追击速度
     public float currentSpeed; //目前速度范围
     public Vector3 faceDir;//三维的向量，记录面朝的方向
+    public float hurtForce; //受伤时的冲力
     public Transform attacker; //攻击者的Transform，用于记录攻击者的位置
+
+
 
     [Header("计时器")]
     public float waitTime; //等待时间
@@ -26,6 +29,11 @@ public class Enemy : MonoBehaviour
     public float waitTimeCounter; //等待时间计时器
 
     public bool wait; //是否等待
+
+    [Header("状态")]
+    public bool isHurt; //是否受伤
+
+    public bool isDead; //是否死亡
 
     private void Awake()
     {
@@ -64,7 +72,8 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move(); //每帧调用Move方法
+        if (!isHurt && !isDead) //如果没有受伤且没有死亡
+            Move(); //每帧调用Move方法
     }
 
     public virtual void Move()
@@ -99,10 +108,31 @@ public class Enemy : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
 
         //受伤被击退
-        // isHurt = true;
-        // anim.SetTrigger("hurt");
-        // Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
-        // rb.velocity = new Vector2(0, rb.velocity.y);
-        // StartCoroutine(OnHurt(dir));
+        isHurt = true;
+        anim.SetTrigger("hurt");
+        Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
+        StartCoroutine(OnHurt(dir));//调用onhurt协程
     }
+
+    private IEnumerator OnHurt(Vector2 dir) //被打后暂停一下
+    {
+        rb.AddForce(dir * hurtForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.45f); //等待0.45秒
+        isHurt = false; //受伤状态结束
+    }
+
+    public void OnDie()
+    {
+        gameObject.layer = 8; //将当前物体的层级设置为2(ignorRaycest什么的那个)，通常表示死亡状态
+        anim.SetBool("dead", true); //设置动画参数，控制死亡动画
+        isDead = true; //设置死亡状态为true
+
+    }
+
+    public void DestroyAfterAnimation()
+    {
+        Destroy(this.gameObject); //销毁当前物体
+    }
+
+
 }
