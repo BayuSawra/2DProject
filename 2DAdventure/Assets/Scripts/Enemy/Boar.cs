@@ -5,15 +5,12 @@ using UnityEngine;
 public class Boar : Enemy
 
 {
-    public override void Move()
+
+    protected override void Awake()
     {
-        base.Move();
-        anim.SetBool("walk", true); //设置动画参数，控制是否走动
-    }  
-
-
-
-
+        base.Awake();
+        patrolState = new BoarPatrolState(); //初始化巡逻状态
+    }
 
 
 }

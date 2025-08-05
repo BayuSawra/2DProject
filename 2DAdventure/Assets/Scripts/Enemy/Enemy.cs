@@ -9,14 +9,14 @@ public class Enemy : MonoBehaviour
 {
     Rigidbody2D rb;
 
-    protected Animator anim;
+    [HideInInspector]public  Animator anim;
 
-    PhysicsCheck physicsCheck;
+    [HideInInspector]public PhysicsCheck physicsCheck;
 
     [Header("基本参数")]
     public float normalSpeed; //走动速度
     public float chaseSpeed; //追击速度
-    public float currentSpeed; //目前速度范围
+    [HideInInspector]public float currentSpeed; //目前速度范围
     public Vector3 faceDir;//三维的向量，记录面朝的方向
     public float hurtForce; //受伤时的冲力
     public Transform attacker; //攻击者的Transform，用于记录攻击者的位置
@@ -35,7 +35,13 @@ public class Enemy : MonoBehaviour
 
     public bool isDead; //是否死亡
 
-    private void Awake()
+    private BaseState currentState; //当前状态
+
+    protected BaseState patrolState; //巡逻状态
+
+    protected BaseState chaseState; //追击状态
+
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>(); //获取当前物体的Rigidbody2D组件
         anim = GetComponent<Animator>(); //获取当前物体的Animator组件
@@ -45,17 +51,17 @@ public class Enemy : MonoBehaviour
         waitTimeCounter = waitTime; //初始化等待时间计时器为等待时间
 
     }
-
+    private void OnEnable()
+  
+    {
+        currentState = patrolState; //将当前状态设置为巡逻状态
+        currentState.OnEnter(this); //调用当前状态的OnEnter方法
+    }
     private void Update()
     {
         faceDir = new Vector3(-transform.localScale.x, 0, 0); //面朝方向为当前物体的局部缩放的x轴方向，y轴和z轴为0
 
-        if ((physicsCheck.touchLeftWall && faceDir.x < 0) || (physicsCheck.touchRightWall && faceDir.x > 0))//如果接触左墙壁或右墙壁
-        {
-            wait = true; //设置等待为true
-            anim.SetBool("walk", false); //设置动画参数，控制是否走动
-        }
-
+        currentState.LogicUpdate(); //调用当前状态的逻辑更新方法
         TimeCounter();
 
         //下方是网网友写的
@@ -72,8 +78,15 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isHurt && !isDead) //如果没有受伤且没有死亡
+        if (!isHurt && !isDead && !wait) //如果没有受伤且没有死亡
             Move(); //每帧调用Move方法
+
+       currentState.PhysicsUpdate(); //调用当前状态的物理更新方法     
+    }
+
+    private void OnDisable()
+    {
+        currentState.OnExit(); //调用当前状态的OnExit方法
     }
 
     public virtual void Move()
