@@ -303,7 +303,7 @@ CapsuleCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 128
-  m_LayerOverridePriority: 10
+  m_LayerOverridePriority: 8
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -402,11 +402,19 @@ MonoBehaviour:
   chaseSpeed: 250
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
-  hurtForce: 5
+  hurtForce: 10
   attacker: {fileID: 0}
+  centerOffset: {x: 0, y: 0.75}
+  checkSize: {x: 1, y: 1}
+  checkDistance: 3
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 64
   waitTime: 1
   waitTimeCounter: 0
   wait: 0
+  lostTime: 2
+  lostTimeCounter: 0
   isHurt: 0
   isDead: 0
 --- !u!95 &115879873

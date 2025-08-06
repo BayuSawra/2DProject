@@ -9,19 +9,23 @@ public class Enemy : MonoBehaviour
 {
     Rigidbody2D rb;
 
-    [HideInInspector]public  Animator anim;
+    [HideInInspector] public Animator anim;
 
-    [HideInInspector]public PhysicsCheck physicsCheck;
+    [HideInInspector] public PhysicsCheck physicsCheck;
 
     [Header("基本参数")]
     public float normalSpeed; //走动速度
     public float chaseSpeed; //追击速度
-    [HideInInspector]public float currentSpeed; //目前速度范围
+    [HideInInspector] public float currentSpeed; //目前速度范围
     public Vector3 faceDir;//三维的向量，记录面朝的方向
     public float hurtForce; //受伤时的冲力
     public Transform attacker; //攻击者的Transform，用于记录攻击者的位置
 
-
+    [Header("检测参数")]
+    public Vector2 centerOffset; //检测中心偏移
+    public Vector2 checkSize; //检测区域大小
+    public float checkDistance; //检测距离
+    public LayerMask attackLayer; //攻击层
 
     [Header("计时器")]
     public float waitTime; //等待时间
@@ -29,6 +33,9 @@ public class Enemy : MonoBehaviour
     public float waitTimeCounter; //等待时间计时器
 
     public bool wait; //是否等待
+
+    public float lostTime; //丢失时间
+    public float lostTimeCounter; //丢失时间计时器
 
     [Header("状态")]
     public bool isHurt; //是否受伤
@@ -52,7 +59,7 @@ public class Enemy : MonoBehaviour
 
     }
     private void OnEnable()
-  
+
     {
         currentState = patrolState; //将当前状态设置为巡逻状态
         currentState.OnEnter(this); //调用当前状态的OnEnter方法
@@ -81,7 +88,7 @@ public class Enemy : MonoBehaviour
         if (!isHurt && !isDead && !wait) //如果没有受伤且没有死亡
             Move(); //每帧调用Move方法
 
-       currentState.PhysicsUpdate(); //调用当前状态的物理更新方法     
+        currentState.PhysicsUpdate(); //调用当前状态的物理更新方法     
     }
 
     private void OnDisable()
@@ -109,7 +116,44 @@ public class Enemy : MonoBehaviour
             }
 
         }
+
+        if (!FoundPlayer() && lostTimeCounter > 0) //如果没有找到玩家且丢失时间计时器大于0
+        {
+
+            lostTimeCounter -= Time.deltaTime; //如果没有找到玩家，则丢失时间计时器减去时间增量
+        }
+
+        else if (FoundPlayer())
+        {
+
+            lostTimeCounter = lostTime; //如果找到了玩家，则将丢失时间计时器重置为丢失时间
+
+        }
+        
     }
+
+    public bool FoundPlayer()
+    {
+        return Physics2D.BoxCast(transform.position + (Vector3)centerOffset, checkSize, 0, faceDir, checkDistance, attackLayer);
+
+    }
+
+    public void SwitchState(NPCState state)//切换状态,语法糖没学过，以后看看
+    {
+        var newState = state switch
+        {
+            NPCState.Patrol => patrolState,
+            NPCState.Chase => chaseState,
+            _ => currentState
+        };
+
+        currentState.OnExit(); //调用当前状态的OnExit方法
+        currentState = newState; //将当前状态设置为新的状态
+        currentState.OnEnter(this); //调用新的状态的OnEnter方法，并传入当前状态
+
+    }
+
+    #region  事件执行方法
 
     public void OnTakeDamage(Transform attackTrans)
     {
@@ -124,6 +168,7 @@ public class Enemy : MonoBehaviour
         isHurt = true;
         anim.SetTrigger("hurt");
         Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
+        rb.velocity = new Vector2(0,rb.velocity.y); //重置速度
         StartCoroutine(OnHurt(dir));//调用onhurt协程
     }
 
@@ -146,6 +191,11 @@ public class Enemy : MonoBehaviour
     {
         Destroy(this.gameObject); //销毁当前物体
     }
+    #endregion
 
-
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red; //设置Gizmos颜色为红色
+        Gizmos.DrawWireSphere(transform.position + (Vector3)centerOffset+ new Vector3(checkDistance*-transform.localScale.x,0), 0.2f);
+    }
 }
