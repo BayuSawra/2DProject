@@ -85,10 +85,10 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isHurt && !isDead && !wait) //如果没有受伤且没有死亡
+        currentState.PhysicsUpdate(); //调用当前状态的物理更新方法     
+       if (!isHurt && !isDead && !wait) //如果没有受伤且没有死亡
             Move(); //每帧调用Move方法
 
-        currentState.PhysicsUpdate(); //调用当前状态的物理更新方法     
     }
 
     private void OnDisable()

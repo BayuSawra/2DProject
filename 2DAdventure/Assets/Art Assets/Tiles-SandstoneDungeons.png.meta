@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tiles-SandstoneDungeons_0: 1981761892049240750
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

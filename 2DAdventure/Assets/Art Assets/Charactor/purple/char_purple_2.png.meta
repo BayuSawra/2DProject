@@ -1066,7 +1066,47 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      char_purple_2_0: 5365837261902390980
+      char_purple_2_1: -2338421365695396518
+      char_purple_2_10: -8703599914224916773
+      char_purple_2_11: 3743961531110417291
+      char_purple_2_12: 1589509509045446807
+      char_purple_2_13: -704460830909671268
+      char_purple_2_14: 695649931951300229
+      char_purple_2_15: -7615855770938400744
+      char_purple_2_16: 8009513397781197838
+      char_purple_2_17: -6134185786352446488
+      char_purple_2_18: 3862254710244581368
+      char_purple_2_19: -5134202266750619633
+      char_purple_2_2: 1943006371244721236
+      char_purple_2_20: -5855923914898540717
+      char_purple_2_21: -5021443088279137932
+      char_purple_2_22: -8621721959826833593
+      char_purple_2_23: 5551614278761248415
+      char_purple_2_24: 1507156019316893711
+      char_purple_2_25: -7601353596072491381
+      char_purple_2_26: -5240408756541425132
+      char_purple_2_27: 5290079671662358436
+      char_purple_2_28: -4407599208610565199
+      char_purple_2_29: 5333846353157898206
+      char_purple_2_3: -973703901419110233
+      char_purple_2_30: 5784058797606832955
+      char_purple_2_31: -8608881514634032548
+      char_purple_2_32: 4183594206485857007
+      char_purple_2_33: 790331771894319431
+      char_purple_2_34: -1441412826865902085
+      char_purple_2_35: -1084538728769170967
+      char_purple_2_36: -3953663229261470590
+      char_purple_2_37: 2610776009129305955
+      char_purple_2_38: -994291203160479488
+      char_purple_2_39: 7434537765270151944
+      char_purple_2_4: 6781087719104823620
+      char_purple_2_5: 4006876840518183094
+      char_purple_2_6: 1418053866176436561
+      char_purple_2_7: -9195216474901283233
+      char_purple_2_8: 3380583761952998358
+      char_purple_2_9: 6919306283042337503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

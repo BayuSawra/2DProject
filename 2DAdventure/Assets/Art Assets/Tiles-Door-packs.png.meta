@@ -778,7 +778,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tiles-Door-packs_0: 920219349177166530
+      Tiles-Door-packs_1: 3824981401511341163
+      Tiles-Door-packs_10: 3933173161767058936
+      Tiles-Door-packs_11: 7196882147976885078
+      Tiles-Door-packs_12: -67176110851214483
+      Tiles-Door-packs_13: 2070074725683060430
+      Tiles-Door-packs_14: -6554731555521698742
+      Tiles-Door-packs_15: -7364117559494975065
+      Tiles-Door-packs_16: 5905521535894212987
+      Tiles-Door-packs_17: 6821814704808579712
+      Tiles-Door-packs_18: -3718386202862233368
+      Tiles-Door-packs_19: -3713707144676950995
+      Tiles-Door-packs_2: 3073911612783156158
+      Tiles-Door-packs_20: 2944779675523679698
+      Tiles-Door-packs_21: 914308453456046795
+      Tiles-Door-packs_22: 7636339988584482146
+      Tiles-Door-packs_23: -7513368944523327765
+      Tiles-Door-packs_24: -5392851700475371402
+      Tiles-Door-packs_25: -2024095611147249352
+      Tiles-Door-packs_26: -3965212097393291673
+      Tiles-Door-packs_27: 6682787034523145502
+      Tiles-Door-packs_3: 1264736950444947051
+      Tiles-Door-packs_4: 3244735056718196449
+      Tiles-Door-packs_5: -711323765911297339
+      Tiles-Door-packs_6: 6797078686696323578
+      Tiles-Door-packs_7: 4076793723461729358
+      Tiles-Door-packs_8: -6991810839789015880
+      Tiles-Door-packs_9: 60718699477113754
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
