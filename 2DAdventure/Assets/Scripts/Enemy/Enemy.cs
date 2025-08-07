@@ -48,6 +48,8 @@ public class Enemy : MonoBehaviour
 
     protected BaseState chaseState; //追击状态
 
+    protected BaseState skillState; //技能状态
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>(); //获取当前物体的Rigidbody2D组件
@@ -98,9 +100,10 @@ public class Enemy : MonoBehaviour
 
     public virtual void Move()
     {
-
-        rb.velocity = new Vector2(currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y); //设置刚体的速度为当前速度乘以面朝方向的x轴分量，y轴速度保持不变
-
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PreMove") && !anim.GetCurrentAnimatorStateInfo(0).IsName("snailRecover"))//针对蜗牛的行走做了限制，由于别的动物没有这个前置动画，所以可以写在这里。
+        {
+            rb.velocity = new Vector2(currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y); //设置刚体的速度为当前速度乘以面朝方向的x轴分量，y轴速度保持不变
+        }
     }
 
     public void TimeCounter()//计时器
@@ -144,6 +147,7 @@ public class Enemy : MonoBehaviour
         {
             NPCState.Patrol => patrolState,
             NPCState.Chase => chaseState,
+            NPCState.Skill => skillState,
             _ => currentState
         };
 

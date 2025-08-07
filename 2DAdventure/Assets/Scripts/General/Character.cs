@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
 
     public float invulnerableDuration; // 受伤后的无敌时间
 
-    private float invulnerableCounter; // 无敌计时器
+    [HideInInspector]public float invulnerableCounter; // 无敌计时器
 
     public bool invulnerable; // 是否无敌
 

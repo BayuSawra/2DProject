@@ -242,7 +242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 0
-  invulnerableDuration: 0
+  invulnerableDuration: 1
+  invulnerableCounter: 0
   invulnerable: 0
   OnTakeDamage:
     m_PersistentCalls:
@@ -252,7 +253,7 @@ MonoBehaviour:
         m_MethodName: OnTakeDamage
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 12893992}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -303,7 +304,7 @@ MonoBehaviour:
   waitTime: 2
   waitTimeCounter: 0
   wait: 0
-  lostTime: 4
+  lostTime: 2.5
   lostTimeCounter: 0
   isHurt: 0
   isDead: 0
@@ -683,6 +684,7 @@ MonoBehaviour:
   maxHealth: 30
   currentHealth: 0
   invulnerableDuration: 1
+  invulnerableCounter: 0
   invulnerable: 1
   OnTakeDamage:
     m_PersistentCalls:
@@ -690,10 +692,10 @@ MonoBehaviour:
       - m_Target: {fileID: 115879872}
         m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
         m_MethodName: OnTakeDamage
-        m_Mode: 0
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -981,7 +983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputDirection: {x: 0, y: 0}
   rb: {fileID: 213160627}
-  speed: 280
+  speed: 300
   normal: {fileID: 6200000, guid: 833315182ac13a643bcd4c573891b7ef, type: 2}
   wall: {fileID: 6200000, guid: 68f9d39c642ec0c4eaea8ee84b4fcc4b, type: 2}
   jumpForce: 16.5
@@ -1064,6 +1066,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   invulnerableDuration: 1
+  invulnerableCounter: 0
   invulnerable: 0
   OnTakeDamage:
     m_PersistentCalls:
@@ -2001,7 +2004,7 @@ GameObject:
   - component: {fileID: 813954001}
   - component: {fileID: 813954003}
   - component: {fileID: 813954002}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Attack2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2104,7 +2107,7 @@ GameObject:
   - component: {fileID: 833395966}
   - component: {fileID: 833395967}
   - component: {fileID: 833395968}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Attack3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5539,7 +5542,7 @@ GameObject:
   - component: {fileID: 1523600766}
   - component: {fileID: 1523600768}
   - component: {fileID: 1523600767}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Attack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6073,7 +6076,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1735167265}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Attack Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
