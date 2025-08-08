@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 
 public class Enemy : MonoBehaviour
 {
-    Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
 
     [HideInInspector] public Animator anim;
 
@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     public Vector3 faceDir;//三维的向量，记录面朝的方向
     public float hurtForce; //受伤时的冲力
     public Transform attacker; //攻击者的Transform，用于记录攻击者的位置
+    public Vector3 spwanPoint;//用于记录蜜蜂的初始位置
 
     [Header("检测参数")]
     public Vector2 centerOffset; //检测中心偏移
@@ -55,9 +56,11 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); //获取当前物体的Rigidbody2D组件
         anim = GetComponent<Animator>(); //获取当前物体的Animator组件
         physicsCheck = GetComponent<PhysicsCheck>(); //获取当前物体的PhysicsCheck组件
-        currentSpeed = normalSpeed; //初始化当前速度为正常速度
 
+        currentSpeed = normalSpeed; //初始化当前速度为正常速度
         waitTimeCounter = waitTime; //初始化等待时间计时器为等待时间
+        spwanPoint = transform.position; //记录蜜蜂的初始位置
+
 
     }
     private void OnEnable()
@@ -100,7 +103,8 @@ public class Enemy : MonoBehaviour
 
     public virtual void Move()
     {
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PreMove") && !anim.GetCurrentAnimatorStateInfo(0).IsName("snailRecover"))//针对蜗牛的行走做了限制，由于别的动物没有这个前置动画，所以可以写在这里。
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PreMove") && !anim.GetCurrentAnimatorStateInfo(0).IsName("snailRecover")
+        && !anim.GetCurrentAnimatorStateInfo(0).IsName("snailHurt") && !anim.GetCurrentAnimatorStateInfo(0).IsName("snailHide"))//针对蜗牛的行走做了限制，由于别的动物没有这个前置动画，所以可以写在这里。
         {
             rb.velocity = new Vector2(currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y); //设置刚体的速度为当前速度乘以面朝方向的x轴分量，y轴速度保持不变
         }
@@ -135,7 +139,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public bool FoundPlayer()
+    public virtual  bool FoundPlayer()
     {
         return Physics2D.BoxCast(transform.position + (Vector3)centerOffset, checkSize, 0, faceDir, checkDistance, attackLayer);
 
@@ -157,6 +161,11 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public virtual Vector3 GetNewPoint()
+    {
+        return transform.position;
+    }
+
     #region  事件执行方法
 
     public void OnTakeDamage(Transform attackTrans)
@@ -172,7 +181,7 @@ public class Enemy : MonoBehaviour
         isHurt = true;
         anim.SetTrigger("hurt");
         Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
-        rb.velocity = new Vector2(0,rb.velocity.y); //重置速度
+        rb.velocity = new Vector2(0, rb.velocity.y); //重置速度
         StartCoroutine(OnHurt(dir));//调用onhurt协程
     }
 
@@ -197,7 +206,7 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-    private void OnDrawGizmosSelected()
+    public virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red; //设置Gizmos颜色为红色
         Gizmos.DrawWireSphere(transform.position + (Vector3)centerOffset+ new Vector3(checkDistance*-transform.localScale.x,0), 0.2f);

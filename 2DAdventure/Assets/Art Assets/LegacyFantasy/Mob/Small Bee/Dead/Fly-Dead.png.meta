@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 9dc46a4930db7994696b255c6dbc2ac5
+guid: eca751cf84fb9b2439bf430da324825d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7980351618680381734
-    second: Attack-Sheet_0
+      213: -5214062119380135076
+    second: Fly-Dead_0
   - first:
-      213: 6951178911378622742
-    second: Attack-Sheet_1
+      213: -7115364358767912461
+    second: Fly-Dead_1
   - first:
-      213: 5875453275367695068
-    second: Attack-Sheet_2
+      213: -7362166250360434374
+    second: Fly-Dead_2
   - first:
-      213: -4804304518213913706
-    second: Attack-Sheet_3
+      213: 869153606617481508
+    second: Fly-Dead_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack-Sheet_0
+      name: Fly-Dead_0
       rect:
         serializedVersion: 2
         x: 0
@@ -123,14 +123,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ade97d90c78104190800000000000000
-      internalID: -7980351618680381734
+      spriteID: c53d681b02ee3a7b0800000000000000
+      internalID: -5214062119380135076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-Sheet_1
+      name: Fly-Dead_1
       rect:
         serializedVersion: 2
         x: 64
@@ -144,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 619c8e6146c877060800000000000000
-      internalID: 6951178911378622742
+      spriteID: 3f9d92480d5214d90800000000000000
+      internalID: -7115364358767912461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-Sheet_2
+      name: Fly-Dead_2
       rect:
         serializedVersion: 2
         x: 128
@@ -165,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cd262bcdf9dc98150800000000000000
-      internalID: 5875453275367695068
+      spriteID: a3195ed3dc454d990800000000000000
+      internalID: -7362166250360434374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-Sheet_3
+      name: Fly-Dead_3
       rect:
         serializedVersion: 2
         x: 192
@@ -186,8 +186,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6933e07be7ea35db0800000000000000
-      internalID: -4804304518213913706
+      spriteID: 4214fa9a99adf0c00800000000000000
+      internalID: 869153606617481508
       vertices: []
       indices: 
       edges: []
@@ -195,7 +195,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 966eda278804a3a4d897afbbcc0298e3
+    spriteID: 50cff6e8b3cbbe34e8c4cb8046a8d854
     internalID: 0
     vertices: []
     indices: 
@@ -203,10 +203,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack-Sheet_0: -7980351618680381734
-      Attack-Sheet_1: 6951178911378622742
-      Attack-Sheet_2: 5875453275367695068
-      Attack-Sheet_3: -4804304518213913706
+      Fly-Dead_0: -5214062119380135076
+      Fly-Dead_1: -7115364358767912461
+      Fly-Dead_2: -7362166250360434374
+      Fly-Dead_3: 869153606617481508
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
