@@ -17,6 +17,8 @@ public class Character : MonoBehaviour
 
     public bool invulnerable; // 是否无敌
 
+    public UnityEvent<Character> OnHealthChange; // 生命值变化事件
+
     public UnityEvent<Transform> OnTakeDamage; // 受伤事件
 
     public UnityEvent OnDie; // 死亡事件
@@ -25,6 +27,7 @@ public class Character : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth; // 初始化当前生命值为最大生命值
+        OnHealthChange?.Invoke(this); // 初始化时调用生命值变化事件，传入当前角色实例
     }
 
     private void Update()
@@ -61,7 +64,7 @@ public class Character : MonoBehaviour
             OnDie?.Invoke();// 调用死亡方法
         }
     
-
+        OnHealthChange?.Invoke(this); // 调用生命值变化事件，传入当前角色实例
     }
 
     private void TriggerInvulnerable()

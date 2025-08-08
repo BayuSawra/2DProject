@@ -10,6 +10,7 @@ public class BoarChaseState : BaseState
         currentEnemy = enemy;
         //Debug.Log("追击中");
         currentEnemy.currentSpeed = currentEnemy.chaseSpeed; //设置追击速度
+        currentEnemy.lostTimeCounter = currentEnemy.lostTime;
         currentEnemy.anim.SetBool("run", true);
     }
    
