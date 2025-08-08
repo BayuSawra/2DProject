@@ -33,6 +33,7 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetBool("isDead", playerController.isDead); //设置动画参数，控制是否死亡
         anim.SetBool("isAttack", playerController.isAttack); //设置动画参数，控制是否攻击
         anim.SetBool("onWall", physicsCheck.onWall);//设置动画，在墙面滑动。
+        anim.SetBool("isSlide", playerController.isSlide);//设置动画，开始滑铲
     }
 
     public void PlayHurt()

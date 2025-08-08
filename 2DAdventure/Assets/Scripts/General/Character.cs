@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 using UnityEngine.Events;
 
 public class Character : MonoBehaviour
@@ -8,12 +9,15 @@ public class Character : MonoBehaviour
     [Header("基本属性")]
     public float maxHealth;
     public float currentHealth;
+    public float maxPower;
+    public float currentPower;
+    public float powerRecoverSpeed;
 
     [Header("受伤后无敌时间")]
 
     public float invulnerableDuration; // 受伤后的无敌时间
 
-    [HideInInspector]public float invulnerableCounter; // 无敌计时器
+    [HideInInspector] public float invulnerableCounter; // 无敌计时器
 
     public bool invulnerable; // 是否无敌
 
@@ -27,6 +31,7 @@ public class Character : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth; // 初始化当前生命值为最大生命值
+        currentPower = maxPower;
         OnHealthChange?.Invoke(this); // 初始化时调用生命值变化事件，传入当前角色实例
     }
 
@@ -39,6 +44,13 @@ public class Character : MonoBehaviour
             {
                 invulnerable = false; // 无敌时间结束
             }
+        }
+
+        if (currentPower < maxPower)
+        {
+
+            currentPower += Time.deltaTime * powerRecoverSpeed;
+
         }
     }
 
@@ -55,7 +67,7 @@ public class Character : MonoBehaviour
             currentHealth -= attacker.damage;
             TriggerInvulnerable(); // 被打倒一次就触发无敌状态
             OnTakeDamage?.Invoke(attacker.transform);//询问确定有伤害事件订阅者，并调用事件，传入的坐标是对方的坐标。
-            
+
         }
 
         else
@@ -63,7 +75,7 @@ public class Character : MonoBehaviour
             currentHealth = 0; // 生命值归零
             OnDie?.Invoke();// 调用死亡方法
         }
-    
+
         OnHealthChange?.Invoke(this); // 调用生命值变化事件，传入当前角色实例
     }
 
@@ -78,4 +90,11 @@ public class Character : MonoBehaviour
         }
 
     }
+    
+     public void OnSlide(int cost)//滑铲的消耗
+    {
+        currentPower -= cost;
+        OnHealthChange?.Invoke(this);
+    }
+
 }

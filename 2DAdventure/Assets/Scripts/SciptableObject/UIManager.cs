@@ -24,5 +24,7 @@ public class UIManager : MonoBehaviour
     {
         var persentage = character.currentHealth / character.maxHealth;
         playerStatBar.OnHealthChange(persentage);
+
+        playerStatBar.OnPowerChange(character);
     }
 }
