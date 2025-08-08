@@ -180,6 +180,12 @@ public class PlayerController : MonoBehaviour
     {   
         coll.sharedMaterial = physicsCheck.isGround? normal : wall; //根据是否在地面上设置碰撞体的物理材质,三元运算符
 
+         if (physicsCheck.onWall)//在墙面时下降速度是原来的一半
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y *0.95f);
+        else
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+
+
 
 
         if (isDead)

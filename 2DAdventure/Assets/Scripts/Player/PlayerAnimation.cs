@@ -26,13 +26,13 @@ public class PlayerAnimation : MonoBehaviour
 
     public void SetAnimation()
     {
-
         anim.SetFloat("velocityX", Mathf.Abs(rb.velocity.x)); //设置动画参数，控制水平速度
         anim.SetFloat("velocityY", rb.velocity.y); //设置动画参数，控制垂直速度
         anim.SetBool("isGround", physicsCheck.isGround); //设置动画参数，控制是否在地面上
         anim.SetBool("isCrouch", playerController.isCrouch); //设置动画参数，控制是否蹲下
         anim.SetBool("isDead", playerController.isDead); //设置动画参数，控制是否死亡
         anim.SetBool("isAttack", playerController.isAttack); //设置动画参数，控制是否攻击
+        anim.SetBool("onWall", physicsCheck.onWall);//设置动画，在墙面滑动。
     }
 
     public void PlayHurt()

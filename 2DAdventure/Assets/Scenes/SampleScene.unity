@@ -532,7 +532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &115879865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1048,7 +1048,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 833315182ac13a643bcd4c573891b7ef, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1138,8 +1138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manual: 1
-  isPlayer: 0
-  bottomOffset: {x: -0.05, y: 0}
+  isPlayer: 1
+  bottomOffset: {x: -0.05, y: 0.1}
   leftOffset: {x: -0.45, y: 1.18}
   rightOffset: {x: 0.3, y: 1.18}
   checkRaduis: 0.1

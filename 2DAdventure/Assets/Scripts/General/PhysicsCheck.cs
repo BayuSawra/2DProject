@@ -6,7 +6,7 @@ public class PhysicsCheck : MonoBehaviour
 {
     private CapsuleCollider2D coll;
     private PlayerController playerController;
-    private Rigidbody2D rb;
+    private Rigidbody2D rb;//用于检测player的碰撞
 
     [Header("检测参数")]
     public bool manual;
@@ -57,7 +57,7 @@ public class PhysicsCheck : MonoBehaviour
 
         //在墙壁上
         if (isPlayer)
-            onWall = (touchLeftWall && playerController.inputDirection.x < 0f || touchRightWall && playerController.inputDirection.x > 0f) && rb.velocity.y < 0f;
+            onWall = (touchLeftWall && playerController.inputDirection.x < 0f || touchRightWall && playerController.inputDirection.x > 0f) && rb.velocity.y < 0f;//跳到y轴的最高点开始下降并且触碰了墙壁
     }
 
     private void OnDrawGizmosSelected()
