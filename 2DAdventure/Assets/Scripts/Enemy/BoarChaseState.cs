@@ -17,9 +17,7 @@ public class BoarChaseState : BaseState
     {
         if (currentEnemy.lostTimeCounter <= 0)
         { 
-           
            currentEnemy.SwitchState(NPCState.Patrol); //如果丢失时间计时器小于等于0，切换到巡逻状态
-
         }
         
 

@@ -12,6 +12,7 @@ public class Bee : Enemy
     {
         base.Awake();
         patrolState = new BeePatrolState(); //初始化巡逻状态
+        chaseState = new BeeChaseState(); //初始化追击状态
     }
     public override bool FoundPlayer()
     {
