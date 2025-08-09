@@ -1,6 +1,11 @@
 public enum NPCState
 {
-   Patrol,Chase,Skill
+  Patrol, Chase, Skill
 
+}
 
+public enum SceneType
+{
+    Location,Menu
  }
+
