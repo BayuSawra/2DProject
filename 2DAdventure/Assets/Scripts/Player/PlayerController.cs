@@ -155,6 +155,7 @@ public class PlayerController : MonoBehaviour
                                                                         //打断滑铲的协程
             isSlide = false;
             StopAllCoroutines();
+            GetComponent<AudioDefination>()?.PlayAudioClip();
         }
 
         else if (physicsCheck.onWall && !wallJump)

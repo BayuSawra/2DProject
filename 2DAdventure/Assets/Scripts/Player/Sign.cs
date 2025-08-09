@@ -10,9 +10,9 @@ public class Sign : MonoBehaviour
 {
     private PlayerInputControl playerInput;//拿到玩家的输入
     private Animator anim;
-
     public Transform palyerTrans;
     public GameObject signSprite;
+    private IInteractable targetItem;
     private bool canPress;
 
     private void Awake()
@@ -28,13 +28,25 @@ public class Sign : MonoBehaviour
     void OnEnable()
     {
         InputSystem.onActionChange += OnActionChange;
+        playerInput.Gameplay.Confirm.started += OnConfirm;
     }
+
 
     void Update()
     {
         signSprite.GetComponent<SpriteRenderer>().enabled = canPress;
         signSprite.transform.localScale = palyerTrans.localScale;
     }
+
+    private void OnConfirm(InputAction.CallbackContext obj)
+    {
+        if (canPress)
+        {
+            targetItem.TriggerAction();
+            GetComponent<AudioDefination>()?.PlayAudioClip();
+        }
+    }
+
 
     private void OnActionChange(object obj, InputActionChange actionChange)//unity自己的按钮变换是注册的方法
     {
@@ -64,6 +76,7 @@ public class Sign : MonoBehaviour
         if (other.CompareTag("Interactable"))
         {
             canPress = true;
+            targetItem = other.GetComponent<IInteractable>();
         }
     }
 

@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 213160629}
   - component: {fileID: 213160631}
   - component: {fileID: 213160632}
+  - component: {fileID: 213160633}
   m_Layer: 6
   m_Name: ///Player
   m_TagString: Untagged
@@ -493,6 +494,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &213160633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213160623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60910028dd3c90b4face385cc57e3782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: d9068fe11beb85a43bd17c0aba7c628e, type: 2}
+  audioClip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  playOnEnable: 0
 --- !u!1 &226791656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2567,6 +2583,7 @@ GameObject:
   - component: {fileID: 1497847158}
   - component: {fileID: 1497847159}
   - component: {fileID: 1497847160}
+  - component: {fileID: 1497847161}
   m_Layer: 0
   m_Name: Sign
   m_TagString: Untagged
@@ -2650,6 +2667,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   palyerTrans: {fileID: 213160625}
   signSprite: {fileID: 1779102788}
+--- !u!114 &1497847161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497847157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60910028dd3c90b4face385cc57e3782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: d9068fe11beb85a43bd17c0aba7c628e, type: 2}
+  audioClip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
+  playOnEnable: 0
 --- !u!1 &1523600765
 GameObject:
   m_ObjectHideFlags: 0
