@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
 using UnityEngine.Events;
@@ -54,6 +55,15 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other)//触发水面事件
+    {
+        if (other.CompareTag("Water"))
+        {
+            currentHealth = 0;
+            OnHealthChange?.Invoke(this);
+            OnDie?.Invoke();//死亡
+        }
+    }
     public void TakeDamage(Attack attacker)
     {
 
