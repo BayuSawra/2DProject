@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
     public GameSceneSO firstLoadScene;
     [Header("广播")]
     public VoidEventSO afterSceneLoadedEvent;
+    public FadeEventSO fadeEvent;//渐变遮罩
     [SerializeField] private GameSceneSO currentLoadedScene;//序列化这个部分
     private GameSceneSO sceneToLoad;
     private Vector3 positionToGo;
@@ -76,7 +77,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (fadeScreen)
         {
-
+            fadeEvent.FadeIn(fadeDuraction);
         }
 
         yield return new WaitForSeconds(fadeDuraction);//开始渐变
@@ -99,7 +100,7 @@ public class SceneLoader : MonoBehaviour
         playerTrans.gameObject.SetActive(true);
         if (fadeScreen)
         {
-
+            fadeEvent.FadeOut(fadeDuraction);
         }
 
         isLoading = false;
