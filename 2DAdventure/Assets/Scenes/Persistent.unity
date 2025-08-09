@@ -329,6 +329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72cc82702666b745b4fbd6a3677c274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadEvent: {fileID: 11400000, guid: 0cd3b258f0720d148873cba6e942fb3c, type: 2}
+  afterSceneLoadedEvent: {fileID: 11400000, guid: 4a81a95b0fe73264082b73afe8686999, type: 2}
   inputDirection: {x: 0, y: 0}
   rb: {fileID: 213160627}
   speed: 300
@@ -870,6 +872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatBar: {fileID: 455055113}
   healthEvent: {fileID: 11400000, guid: 25cc373c8a3297142ae225e3c04ccddf, type: 2}
+  loadEvent: {fileID: 11400000, guid: 0cd3b258f0720d148873cba6e942fb3c, type: 2}
 --- !u!1 &503676879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,7 +2623,7 @@ MonoBehaviour:
   playerTrans: {fileID: 213160625}
   firstPosition: {x: 28.12, y: -0.73, z: 0}
   loadEventSO: {fileID: 11400000, guid: 0cd3b258f0720d148873cba6e942fb3c, type: 2}
-  firstLoadScene: {fileID: 11400000, guid: 5a12ce52523b6654388d1c4d1b14575b, type: 2}
+  firstLoadScene: {fileID: 11400000, guid: f837f8b1a4e08e0438e8124c425bf1d7, type: 2}
   afterSceneLoadedEvent: {fileID: 11400000, guid: 4a81a95b0fe73264082b73afe8686999, type: 2}
   fadeEvent: {fileID: 11400000, guid: 3ddeb363ede488843aa68a114982c11f, type: 2}
   currentLoadedScene: {fileID: 0}

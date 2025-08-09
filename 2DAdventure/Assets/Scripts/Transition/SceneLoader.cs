@@ -51,7 +51,8 @@ public class SceneLoader : MonoBehaviour
     private void NewGame()
     {
         sceneToLoad = firstLoadScene;
-        OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+        //OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
 
     private void OnLoadRequestEvent(GameSceneSO locationToLoad, Vector3 posToGo, bool fadeScreen)
@@ -105,6 +106,7 @@ public class SceneLoader : MonoBehaviour
 
         isLoading = false;
 
+        if(currentLoadedScene.sceneType == SceneType.Location)
         afterSceneLoadedEvent.RaiseEvent();//场景加载完之后事件
     }
     

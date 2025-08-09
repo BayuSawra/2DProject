@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("监听事件")]
+    public SceneLoadEventSO loadEvent;//如果开始画面人物要动，注销这里
+    public VoidEventSO afterSceneLoadedEvent;//如果开始画面人物要动，注销这里
     public PlayerInputControl inputControl;//创建一个 PlayerInputControl类型的变量
-
     public Vector2 inputDirection; //存储移动输入的变量，用于储存人物移动的数据
 
     public Rigidbody2D rb; //引用Rigidbody2D组件，用于物理移动
@@ -90,17 +92,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
-   
+
 
     private void OnEnable()
     {
         inputControl.Enable(); //启用 PlayerInputControl
+        loadEvent.LaodRequestEvent += OnLoadEvent;
+        afterSceneLoadedEvent.OnEventRaised += OnAfterSceneLoadedEvent;
     }
 
     private void OnDisable()
     {
         inputControl.Disable(); //禁用 PlayerInputControl
+        loadEvent.LaodRequestEvent -= OnLoadEvent;
+        afterSceneLoadedEvent.OnEventRaised -= OnAfterSceneLoadedEvent;
     }
+
 
     private void Update() //，每帧执行
     {
@@ -112,6 +119,15 @@ public class PlayerController : MonoBehaviour
     {
         if (!isHurt && !isAttack)//如果没有受伤
             Move(); //调用移动方法
+    }
+    private void OnLoadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2)//控制开始画面人物的移动,停止
+    {
+        inputControl.Gameplay.Disable();
+    }
+    
+    private void OnAfterSceneLoadedEvent()//控制开始画面人物的移动,开始
+    {
+        inputControl.Gameplay.Enable();
     }
 
     public void Move()
