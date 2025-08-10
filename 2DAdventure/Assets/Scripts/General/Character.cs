@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 public class Character : MonoBehaviour
 {
+    [Header("事件监听")]
+    public VoidEventSO newGameEvent;
+
     [Header("基本属性")]
     public float maxHealth;
     public float currentHealth;
@@ -28,13 +31,27 @@ public class Character : MonoBehaviour
 
     public UnityEvent OnDie; // 死亡事件
 
-
     private void Start()
+    {
+        currentHealth = maxHealth;
+    }
+    private void NewGame()
     {
         currentHealth = maxHealth; // 初始化当前生命值为最大生命值
         currentPower = maxPower;
         OnHealthChange?.Invoke(this); // 初始化时调用生命值变化事件，传入当前角色实例
     }
+
+    private void OnEnable()
+    {
+        newGameEvent.OnEventRaised += NewGame;
+    }
+
+    private void OnDisable()
+    {
+         newGameEvent.OnEventRaised -= NewGame;
+    }
+
 
     private void Update()
     {
