@@ -157,6 +157,51 @@ RectTransform:
   m_AnchoredPosition: {x: 190.84366, y: -44.693115}
   m_SizeDelta: {x: 381.6873, y: 89.3864}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &135843151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 135843153}
+  - component: {fileID: 135843152}
+  m_Layer: 0
+  m_Name: Data Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &135843152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135843151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a075312228f8c408303b371901e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveDataEvent: {fileID: 11400000, guid: fbe2acaf6b8d0c74a832c92c4e317b09, type: 2}
+--- !u!4 &135843153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135843151}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.54244, y: -0.016782746, z: 0.051459126}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1238133807}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &213160623
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +220,7 @@ GameObject:
   - component: {fileID: 213160631}
   - component: {fileID: 213160632}
   - component: {fileID: 213160633}
+  - component: {fileID: 213160634}
   m_Layer: 6
   m_Name: ///Player
   m_TagString: Untagged
@@ -512,6 +558,20 @@ MonoBehaviour:
   playAudioEvent: {fileID: 11400000, guid: d9068fe11beb85a43bd17c0aba7c628e, type: 2}
   audioClip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   playOnEnable: 0
+--- !u!114 &213160634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213160623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19080826ac0d63642a6f7841e901ef4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistentType: 0
+  ID: f864222d-aa04-4248-8701-13c4b57e4bd3
 --- !u!1 &226791656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,6 +2257,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 489453613}
+  - {fileID: 135843153}
   - {fileID: 546174384}
   - {fileID: 1353901282}
   m_Father: {fileID: 0}
