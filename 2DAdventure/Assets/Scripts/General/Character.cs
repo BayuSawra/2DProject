@@ -138,18 +138,26 @@ public class Character : MonoBehaviour,ISaveable
         if (data.characterPosDict.ContainsKey(GetDataID().ID))
         {
             data.characterPosDict[GetDataID().ID] = transform.position;
+            data.floatSaveData[GetDataID().ID + "power"] = this.currentPower;
         }
         else
         {
             data.characterPosDict.Add(GetDataID().ID, transform.position);
+            data.floatSaveData.Add(GetDataID().ID + "health", this.currentHealth);
+            data.floatSaveData.Add(GetDataID().ID + "power", this.currentPower);
         }
     }
 
     public void LoadData(Data data)
     {
-      if (data.characterPosDict.ContainsKey(GetDataID().ID))
+        if (data.characterPosDict.ContainsKey(GetDataID().ID))
         {
             transform.position = data.characterPosDict[GetDataID().ID];
+            this.currentHealth = data.floatSaveData[GetDataID().ID + "health"];
+            this.currentPower = data.floatSaveData[GetDataID().ID + "power"];
+
+            //通知UI更新
+            OnHealthChange?.Invoke(this);
         }
     }
 }
