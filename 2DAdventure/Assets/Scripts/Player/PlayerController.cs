@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("监听事件")]
-    public SceneLoadEventSO loadEvent;//如果开始画面人物要动，注销这里
+    public SceneLoadEventSO sceneLoadEvent;//如果开始画面人物要动，注销这里
     public VoidEventSO afterSceneLoadedEvent;//如果开始画面人物要动，注销这里
+    public VoidEventSO loadDataEvent;
+    public VoidEventSO backToMenuEvent;
     public PlayerInputControl inputControl;//创建一个 PlayerInputControl类型的变量
     public Vector2 inputDirection; //存储移动输入的变量，用于储存人物移动的数据
 
@@ -88,7 +91,7 @@ public class PlayerController : MonoBehaviour
         inputControl.Gameplay.Attack.started += PlayerAttack; //注册攻击事件，当按下攻击键时调用PlayerAttack方法
         //滑铲
         inputControl.Gameplay.Slide.started += Slide;
-        inputControl.Enable();
+        inputControl.Enable();//启用 PlayerInputControl
 
     }
 
@@ -96,18 +99,23 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        inputControl.Enable(); //启用 PlayerInputControl
-        loadEvent.LaodRequestEvent += OnLoadEvent;
+        //inputControl.Enable(); 
+        sceneLoadEvent.LaodRequestEvent += OnLoadEvent;
         afterSceneLoadedEvent.OnEventRaised += OnAfterSceneLoadedEvent;
+        loadDataEvent.OnEventRaised += OnLoadDataEvent;
+         backToMenuEvent.OnEventRaised += OnLoadDataEvent;
     }
 
     private void OnDisable()
     {
         inputControl.Disable(); //禁用 PlayerInputControl
-        loadEvent.LaodRequestEvent -= OnLoadEvent;
+        sceneLoadEvent.LaodRequestEvent -= OnLoadEvent;
         afterSceneLoadedEvent.OnEventRaised -= OnAfterSceneLoadedEvent;
+        loadDataEvent.OnEventRaised -= OnLoadDataEvent;
+         backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
     }
 
+   
 
     private void Update() //，每帧执行
     {
@@ -123,6 +131,11 @@ public class PlayerController : MonoBehaviour
     private void OnLoadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2)//控制开始画面人物的移动,停止
     {
         inputControl.Gameplay.Disable();
+    }
+
+     private void OnLoadDataEvent()//重新开始的时候修改为非死亡状态
+    {
+        isDead = false;
     }
     
     private void OnAfterSceneLoadedEvent()//控制开始画面人物的移动,开始

@@ -80,9 +80,12 @@ public class Character : MonoBehaviour,ISaveable
     {
         if (other.CompareTag("Water"))
         {
-            currentHealth = 0;
-            OnHealthChange?.Invoke(this);
-            OnDie?.Invoke();//死亡
+            if (currentHealth > 0) //确保落水死亡只执行一次
+            {
+                currentHealth = 0;
+                OnHealthChange?.Invoke(this);
+                OnDie?.Invoke();//死亡
+            }
         }
     }
     public void TakeDamage(Attack attacker)

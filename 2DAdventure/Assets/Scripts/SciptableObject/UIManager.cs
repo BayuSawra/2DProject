@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,21 +10,45 @@ public class UIManager : MonoBehaviour
 
     [Header("事件监听")]
     public CharacterEventSO healthEvent;
-    public SceneLoadEventSO loadEvent;
+    public SceneLoadEventSO unloadedSceneEvent;
+    public VoidEventSO loadDataEvent;
+    public VoidEventSO gameOverEvent;
+    public VoidEventSO backToMenuEvent;
+   
 
+    [Header("组件")]
+    public GameObject gameOverPanel;
+    public GameObject restartBtn;
     private void OnEnable()
     {
         healthEvent.OnEventRaised += OnHealthEvent;
-        loadEvent.LaodRequestEvent += OnLoadEvent;
+        unloadedSceneEvent.LaodRequestEvent += OnUnLoadedSceneEvent;
+        loadDataEvent.OnEventRaised += OnLoadDataEvent;
+        gameOverEvent.OnEventRaised += OnGameOverEvent;
+        backToMenuEvent.OnEventRaised += OnLoadDataEvent;
     }
 
     public void OnDisable()
     {
         healthEvent.OnEventRaised -= OnHealthEvent;
-        loadEvent.LaodRequestEvent -= OnLoadEvent;
+        unloadedSceneEvent.LaodRequestEvent -= OnUnLoadedSceneEvent;
+        loadDataEvent.OnEventRaised -= OnLoadDataEvent;
+        gameOverEvent.OnEventRaised -= OnGameOverEvent;
+        backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
     }
 
-    private void OnLoadEvent(GameSceneSO sceneToLoad, Vector3 arg1, bool arg2)
+    private void OnGameOverEvent()
+    {
+        gameOverPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(restartBtn);
+    }
+
+    private void OnLoadDataEvent()
+    {
+        gameOverPanel.SetActive(false);
+    }
+
+    private void OnUnLoadedSceneEvent(GameSceneSO sceneToLoad, Vector3 arg1, bool arg2)
     {
         var isMenu = sceneToLoad.sceneType == SceneType.Menu;
         playerStatBar.gameObject.SetActive(!isMenu);
