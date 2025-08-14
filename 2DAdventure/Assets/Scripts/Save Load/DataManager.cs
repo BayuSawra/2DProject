@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Newtonsoft.Json;
+using System.IO;
 
 //设计模式：观察者模式/广播模式
+[DefaultExecutionOrder(-100)]//数字越小，越先执行
 public class DataManager : MonoBehaviour
 {
     public static DataManager instance;//单例模式
@@ -14,6 +17,7 @@ public class DataManager : MonoBehaviour
 
     private List<ISaveable> saveableList = new List<ISaveable>();//创建储存列表
     private Data saveData;
+    private string jsonFloder;
 
     private void Awake()
     {
@@ -23,6 +27,9 @@ public class DataManager : MonoBehaviour
             Destroy(this.gameObject);
 
         saveData = new Data();
+
+        jsonFloder = Application.persistentDataPath + "/SAVE DATA/";//自动定位不同处理器的储存位置
+        ReadSaveData();
     }
 
     private void OnEnable()
@@ -65,17 +72,38 @@ public class DataManager : MonoBehaviour
             saveable.GetSaveData(saveData);
         }
 
-        foreach (var item in saveData.characterPosDict)//看看存没存对
+        var resultPath = jsonFloder + "data.sav";
+        var jsonData = JsonConvert.SerializeObject(saveData);
+        if (!File.Exists(resultPath))
         {
-            Debug.Log(item.Key + "     " + item.Value);
+            Directory.CreateDirectory(jsonFloder);
         }
+
+        File.WriteAllText(resultPath, jsonData);//写入data.sav
+
+        // foreach (var item in saveData.characterPosDict)//看看存没存对
+        // {
+        //     Debug.Log(item.Key + "     " + item.Value);
+        // }
     }
 
     public void Load()
-    { 
-     foreach (var saveable in saveableList)
+    {
+        foreach (var saveable in saveableList)
         {
             saveable.LoadData(saveData);
         }
+    }
+
+    private void ReadSaveData()
+    {
+        var resultPath = jsonFloder + "data.sav";
+        if (File.Exists(resultPath))
+        {
+            var stringData = File.ReadAllText(resultPath);
+            var jsonData = JsonConvert.DeserializeObject<Data>(stringData);
+            saveData = jsonData;
+        }
+        
     }
 }

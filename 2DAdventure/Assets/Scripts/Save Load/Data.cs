@@ -6,7 +6,7 @@ public class Data
 {
     //字典
     public string sceneToSave;
-    public Dictionary<string, Vector3> characterPosDict = new Dictionary<string, Vector3>();//字典里需要传入一个string和vector3的变量
+    public Dictionary<string, SerializeVector3> characterPosDict = new Dictionary<string, SerializeVector3>();//字典里需要传入一个string和vector3的变量
 
     public Dictionary<string, float> floatSaveData = new Dictionary<string, float>();
 
@@ -24,3 +24,20 @@ public class Data
         return newScene;
     }
 }
+
+ public class SerializeVector3
+    {
+        public float x, y, z;
+
+        public SerializeVector3(Vector3 pos)
+        {
+            this.x = pos.x;
+            this.y = pos.y;
+            this.z = pos.z;
+        }
+
+        public Vector3 ToVector3()
+        {
+            return new Vector3(x, y, z);
+        }
+    }
