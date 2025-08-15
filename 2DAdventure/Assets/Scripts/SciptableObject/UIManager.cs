@@ -40,7 +40,16 @@ public class UIManager : MonoBehaviour
     private void OnGameOverEvent()
     {
         gameOverPanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(restartBtn);
+        var hasSave = DataManager.instance != null && DataManager.instance.HasSave;
+        restartBtn.SetActive(hasSave);
+        if (hasSave)
+        {
+            EventSystem.current.SetSelectedGameObject(restartBtn);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
 
     private void OnLoadDataEvent()

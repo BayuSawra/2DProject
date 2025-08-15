@@ -18,6 +18,7 @@ public class DataManager : MonoBehaviour
     private List<ISaveable> saveableList = new List<ISaveable>();//创建储存列表
     private Data saveData;
     private string jsonFloder;
+    public bool HasSave { get; private set; }
 
     private void Awake()
     {
@@ -80,6 +81,7 @@ public class DataManager : MonoBehaviour
         }
 
         File.WriteAllText(resultPath, jsonData);//写入data.sav
+        HasSave = true;
 
         // foreach (var item in saveData.characterPosDict)//看看存没存对
         // {
@@ -89,6 +91,11 @@ public class DataManager : MonoBehaviour
 
     public void Load()
     {
+        if (!HasSave)
+        {
+            Debug.LogWarning("No save data, skip Load()");
+            return;
+        }
         foreach (var saveable in saveableList)
         {
             saveable.LoadData(saveData);
@@ -98,7 +105,8 @@ public class DataManager : MonoBehaviour
     private void ReadSaveData()
     {
         var resultPath = jsonFloder + "data.sav";
-        if (File.Exists(resultPath))
+        HasSave = File.Exists(resultPath);
+        if (HasSave)
         {
             var stringData = File.ReadAllText(resultPath);
             var jsonData = JsonConvert.DeserializeObject<Data>(stringData);
