@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public PlayerStatBar  playerStatBar;
+    public PlayerStatBar playerStatBar;
 
     [Header("事件监听")]
     public CharacterEventSO healthEvent;
@@ -14,11 +15,20 @@ public class UIManager : MonoBehaviour
     public VoidEventSO loadDataEvent;
     public VoidEventSO gameOverEvent;
     public VoidEventSO backToMenuEvent;
-   
+
+    [Header("广播")]
+    public VoidEventSO pauseEvent;
 
     [Header("组件")]
     public GameObject gameOverPanel;
     public GameObject restartBtn;
+    public Button settingBtn;
+    public GameObject pausePanel;
+
+    void Awake()
+    {
+        settingBtn.onClick.AddListener(TogglePausePanel);
+    }
     private void OnEnable()
     {
         healthEvent.OnEventRaised += OnHealthEvent;
@@ -36,6 +46,22 @@ public class UIManager : MonoBehaviour
         gameOverEvent.OnEventRaised -= OnGameOverEvent;
         backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
     }
+
+    private void TogglePausePanel()
+    {
+        if (pausePanel.activeInHierarchy)
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1;//正常游戏速度
+        }
+        else
+        {
+            pauseEvent.RaiseEvent();
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;//暂停
+        }
+    }
+
 
     private void OnGameOverEvent()
     {
