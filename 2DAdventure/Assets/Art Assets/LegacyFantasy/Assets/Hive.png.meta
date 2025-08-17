@@ -2550,6 +2550,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Hive_116
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 368
+        width: 80
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dc1145659a561d44a8fe7564f3216ce
+      internalID: -1595666789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2581,6 +2602,7 @@ TextureImporter:
       Hive_113: -477513308
       Hive_114: -859297528
       Hive_115: 859876370
+      Hive_116: -1595666789
       Hive_12: 420716348
       Hive_13: -1305546824
       Hive_14: 796366559
