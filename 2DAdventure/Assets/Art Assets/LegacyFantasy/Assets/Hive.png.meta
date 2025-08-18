@@ -2559,7 +2559,7 @@ TextureImporter:
         width: 80
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2567,6 +2567,48 @@ TextureImporter:
       bones: []
       spriteID: 6dc1145659a561d44a8fe7564f3216ce
       internalID: -1595666789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hive_117
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 369
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc14698a8f44d87458a4531109b766ce
+      internalID: -1756521624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hive_118
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 337
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a58423345d1bf64c8288e7b098c8402
+      internalID: 889704950
       vertices: []
       indices: 
       edges: []
@@ -2603,6 +2645,8 @@ TextureImporter:
       Hive_114: -859297528
       Hive_115: 859876370
       Hive_116: -1595666789
+      Hive_117: -1756521624
+      Hive_118: 889704950
       Hive_12: 420716348
       Hive_13: -1305546824
       Hive_14: 796366559
