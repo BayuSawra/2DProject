@@ -141,7 +141,7 @@ public class Character : MonoBehaviour,ISaveable
         if (data.characterPosDict.ContainsKey(GetDataID().ID))
         {
             data.characterPosDict[GetDataID().ID] = new SerializeVector3 (transform.position);
-            data.floatSaveData[GetDataID().ID + "health"] = this.currentPower;
+            data.floatSaveData[GetDataID().ID + "health"] = this.currentHealth;
             data.floatSaveData[GetDataID().ID + "power"] = this.currentPower;
         }
         else
