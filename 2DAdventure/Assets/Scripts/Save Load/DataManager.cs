@@ -47,10 +47,10 @@ public class DataManager : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.lKey.wasPressedThisFrame)
-        {
-            Load();
-        }
+        // if (Keyboard.current.lKey.wasPressedThisFrame)
+        // {
+        //     Load();
+        // }
     }
 
     public void RegisterSaveData(ISaveable saveable)
