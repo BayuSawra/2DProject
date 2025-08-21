@@ -17,18 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: d35b2431b6abd4645ac4e1136afe1dce
   m_SerializeEntries:
-  - m_GUID: 4920f2b1332471d43a1422c026412947
-    m_Address: Bee
+  - m_GUID: 973b82ea1ccfb2d43accc69c71e52fbd
+    m_Address: Assets/Prefabs/Snail.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 212501e799f2ee846ac8d8d680a87814
-    m_Address: Boar
+    m_Address: Assets/Prefabs/Boar.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 973b82ea1ccfb2d43accc69c71e52fbd
-    m_Address: Snail
+  - m_GUID: 4920f2b1332471d43a1422c026412947
+    m_Address: Assets/Prefabs/Bee.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

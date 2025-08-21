@@ -1,5 +1,6 @@
 //抽象基类
-using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine;
+using UnityEditor;
 
 public abstract class BaseState
 {
